@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import * as highcharts from 'highcharts';
 
 @Component({
   selector: 'app-dashboard-component',
@@ -7,14 +6,8 @@ import * as highcharts from 'highcharts';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  highCharts = highcharts;
-  chartOptions: Highcharts.Options = {
-    series: [{
-      data: [1, 2, 3],
-      type: 'line'
-    }]
-  };
+  lat = 51.678418;
+  lng = 7.809007;
 
   constructor() { }
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HighchartsChartModule } from 'highcharts-angular';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { AgmCoreModule } from '@agm/core';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
@@ -9,7 +9,9 @@ import { DashboardComponent } from './dashboard.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    HighchartsChartModule,
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    })
   ]
 })
 export class DashboardModule { }
