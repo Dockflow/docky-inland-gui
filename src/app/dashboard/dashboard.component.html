@@ -1,29 +1,34 @@
 <div class="dashboard">
   <div class="left-column">
     <div class="map-view">
-      <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-        <ng-container>
+      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+        <ng-container *ngIf="polylines?.length !== 0">
           <agm-polyline *ngFor="let polyline of polylines; let i = index;"  [strokeColor]="polyline.color">
-            <agm-polyline-point *ngFor="let point of polyline.path" [latitude]="point.latitude" [longitude]="point.longitude">
+            <agm-polyline-point *ngFor="let point of polyline.path" [latitude]="point.lat" [longitude]="point.lng">
             </agm-polyline-point>
         </agm-polyline>
         <ng-container>
           <div *ngFor="let polyline of polylines; let i = index;">
             <agm-marker
               *ngFor="let point of polyline.path"
-              [latitude]="point.latitude"
-              [longitude]="point.longitude"
+              [latitude]="point.lat"
+              [longitude]="point.lng"
               [iconUrl]="point.wait_time > 5 ? redIcon : greenIcon"
             >
             <agm-info-window
                 [isOpen]="false"
-                [latitude]="point.latitude"
-                [longitude]="point.longitude"
+                [latitude]="point.lat"
+                [longitude]="point.lng"
                 [disableAutoPan]="false"
             >
                 <div>
                     <p>Name: {{ point.name }}</p>
-                    <p>Wait time: {{ point.wait_time }}</p>
+                    <p>Wait time: {{ point.wait_time }} minutes</p>
+                    <p>Waterway: {{ point.waterway }}</p>
+                    <p>Travel time from previous lock: {{ point.travel_time }} minutes</p>
+                    <p>Transfer time: {{ point.transfer_time }} minutes</p>
+                    <p>Distance from previous lock: {{ point.distance }} km</p>
+                    <p>Travel speed: {{ point.travel_speed }} km/h</p>
                 </div>
             </agm-info-window>
         </agm-marker>
@@ -86,12 +91,15 @@
         <div
           *ngFor="let corridor of corridors"
           class="item"
-          [ngStyle]="{ 'background-color': corridor.wait_time > 5 ? 'red' : 'green' }"
+          [ngStyle]="{ 'background-color': corridor.wait_time > 30 ? 'red' : 'green' }"
           (click)="viewStats(corridor.id)"
         >
           <p><b class="field">Name:</b> {{ corridor.name }}</p>
-          <p><b class="field">Wait time:</b> {{ corridor.wait_time }} hours</p>
-          <p class="last"><b class="field">Locks:</b> {{ corridor.locks }}</p>
+          <p><b class="field">Wait time:</b> {{ corridor.wait_time }} minutes</p>
+          <p><b class="field">Distance:</b> {{ corridor.distance }} km</p>
+          <p><b class="field">Locks:</b> {{ corridor.locks.length }}</p>
+          <p><b class="field">Travel time:</b> {{ (corridor.travel_time / 60).toFixed(2) }} hours</p>
+          <p class="last"><b class="field">Average speed:</b> {{ (corridor.distance / (corridor.travel_time / 60)).toFixed(2) }} km/h</p>
         </div>
       </div>
     </div>
