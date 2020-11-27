@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-component',
@@ -51,31 +52,37 @@ export class DashboardComponent implements OnInit {
 
   corridors = [
     {
+      id: 1,
       name: 'C1',
       wait_time: 2,
       locks: 5,
     },
     {
+      id: 2,
       name: 'C2',
       wait_time: 10,
       locks: 8,
     },
     {
+      id: 3,
       name: 'C3',
       wait_time: 5,
       locks: 2,
     },
     {
+      id: 4,
       name: 'C4',
       wait_time: 6,
       locks: 3,
     },
     {
+      id: 5,
       name: 'C5',
       wait_time: 4,
       locks: 5,
     },
     {
+      id: 6,
       name: 'C6',
       wait_time: 8,
       locks: 7,
@@ -87,6 +94,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
   ) {
     //
   }
@@ -94,6 +102,10 @@ export class DashboardComponent implements OnInit {
   submit(): void {
     const rawValue = this.corridorForm.getRawValue();
     console.log(rawValue);
+  }
+
+  viewStats(corridorId: number): void {
+    this.router.navigate([`/stats/${corridorId}`]);
   }
 
   ngOnInit(): void {

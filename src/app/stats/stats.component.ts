@@ -11,8 +11,8 @@ export class StatsComponent implements OnInit {
   highCharts = highcharts;
   chartOptions: Highcharts.Options = {
     series: [{
-      data: [1, 2, 3],
-      type: 'line'
+      data: [1, 7, 3, 5, 4, 6],
+      type: 'line',
     }]
   };
 

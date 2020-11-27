@@ -83,7 +83,12 @@
     <div class="list-view">
       <p><b>Corridor List</b></p>
       <div class="list-items">
-        <div *ngFor="let corridor of corridors" class="item" [ngStyle]="{ 'background-color': corridor.wait_time > 5 ? 'red' : 'green' }">
+        <div
+          *ngFor="let corridor of corridors"
+          class="item"
+          [ngStyle]="{ 'background-color': corridor.wait_time > 5 ? 'red' : 'green' }"
+          (click)="viewStats(corridor.id)"
+        >
           <p><b class="field">Name:</b> {{ corridor.name }}</p>
           <p><b class="field">Wait time:</b> {{ corridor.wait_time }} hours</p>
           <p class="last"><b class="field">Locks:</b> {{ corridor.locks }}</p>
