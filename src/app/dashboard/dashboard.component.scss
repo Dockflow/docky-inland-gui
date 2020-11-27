@@ -1,4 +1,56 @@
-agm-map {
+.dashboard {
+  display: flex;
   height: 100%;
-  width: 100%;
+
+  .left-column {
+    width: 80%;
+
+    .map-view {
+      width: 100%;
+      height: 100%;
+
+      agm-map {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  .right-column {
+    width: 20%;
+    margin: 20px;
+
+    .form-view {
+      .mat-form-field {
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .list-view {
+      margin: 40px 0 20px;
+      max-height: calc(100% - 470px);
+      overflow: auto;
+
+      .item {
+          color: #FFFFFF;
+          padding: 10px;
+          margin-bottom: 20px;
+          border-radius: 4px;
+
+          p {
+            &.last {
+              margin-bottom: 0;
+            }
+          }
+
+          .field {
+            font-size: 16px;
+          }
+      }
+    }
+  }
 }

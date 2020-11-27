@@ -1,7 +1,17 @@
 <div class="login-container">
   <img src="assets/riverr.png">
-  <input type="text" placeholder="Username" />
-  <input type="password" placeholder="Password" />
-  <div class="button primary-button" (click)="login()">Login</div>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Username" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="password" placeholder="Password" />
+  </mat-form-field>
+  <button
+    mat-flat-button
+    (click)="login()"
+    color="primary"
+  >
+    Login
+</button>
 </div>
 
